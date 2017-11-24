@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="players">
 
 <head>
     <title>Demo</title>
-<link rel="icon" href="https://undertale.aminoapps.com/static/bower/emojify.js/images/emoji/fish.png">
+    <link rel="icon" href="https://undertale.aminoapps.com/static/bower/emojify.js/images/emoji/fish.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -12,8 +12,67 @@
 
 </head>
 
-<body>
+<body ng-controller="player_data">
     <h1>Demo</h1>
+
+    <p>{{message}}</p>
+
+    <h2>CREATE</h2>
+    <form>
+        <input type="text" placeholder="name" ng-model="input_name">
+        <input type="text" placeholder="age" ng-model="input_age">
+        <input type="text" placeholder="gender" ng-model="input_gender">
+        <input type="text" placeholder="foot" ng-model="input_foot">
+        <input type="text" placeholder="nationality" ng-model="input_nationality">
+
+        <button class="btn btn-primary" ng-click="create()">create player</button>
+    </form>
+
+    <h2>READ</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>_id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>gender</th>
+                <th>foot</th>
+                <th>nationality</th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+        </thead>
+
+        <tbody ng-repeat="player in players">
+            <tr ng-class="{'male': player.gender == 'Male', 'female': player.gender == 'Female'}">
+
+
+                <td>{{player._id}}</td>
+                <td>
+                    <input type="text" ng-model="player.name">
+                </td>
+                <td>
+                    <input type="text" ng-model="player.age">
+                </td>
+                <td>
+                    <input type="text" ng-model="player.gender">
+                </td>
+                <td>
+                    <input type="text" ng-model="player.foot">
+                </td>
+                <td>
+                    <input type="text" ng-model="player.nationality">
+                </td>
+                <td>
+                    <button class="btn btn-warning" ng-click="update(player)">UPDATE</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="delete(player)">DELETE</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
 
 </body>
 
